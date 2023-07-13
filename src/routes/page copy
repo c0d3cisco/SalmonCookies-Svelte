@@ -1,0 +1,89 @@
+<script>
+	let cityObjArr = [
+		{ cityName: 'Seattle', minCustomer: 23, maxCustomer: 65, avgCookieSaleHour: 6.3 },
+		{ cityName: 'Tokyo', minCustomer: 3, maxCustomer: 24, avgCookieSaleHour: 1.2 },
+		{ cityName: 'Dubai', minCustomer: 11, maxCustomer: 38, avgCookieSaleHour: 3.7 },
+		{ cityName: 'Paris', minCustomer: 20, maxCustomer: 38, avgCookieSaleHour: 6.3 },
+		{ cityName: 'Lima', minCustomer: 2, maxCustomer: 65, avgCookieSaleHour: 6.3 }
+	];
+
+	class CitySales {
+		constructor(cityName, minCustomer, maxCustomer, avgCookieSaleHour) {
+			this.cityName = cityName;
+			this.minCustomer = minCustomer;
+			this.maxCustomer = maxCustomer;
+			this.avgCookieSaleHour = avgCookieSaleHour;
+			this.hourlySaleList = [];
+			this.hourlyEmployee = [];
+			this.totalSales = 0;
+		}
+		// ... keep all the methods from the CitySales prototype here
+		// For instance:
+		hourlyCookieAndEmployee() {
+			this.hourlySaleList = [];
+			this.hourlyEmployee = [];
+			this.totalSales = 0;
+			let controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.68, 0.5, 0.3, 0.45];
+			controlCurve.forEach((controlCurve) => {
+				let randomNum =
+					Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1)) + this.minCustomer;
+				let hourlySale = Math.ceil(randomNum * this.avgCookieSaleHour * controlCurve);
+				let employeeNeededHourly = Math.round(hourlySale / 20); //adjust depending on rounding
+				if (employeeNeededHourly < 2) {
+					employeeNeededHourly = 2;
+				}
+				this.hourlySaleList.push(hourlySale); //recommend to Math.ceil to always round up
+				this.hourlyEmployee.push(employeeNeededHourly);
+				this.totalSales += hourlySale;
+			});
+			this.hourlySaleList.push(this.totalSales);
+			this.hourlySaleList.unshift(this.cityName);
+			this.hourlyEmployee.unshift(this.cityName);
+		}
+	}
+
+	let cityInput = '';
+	let minNumInput = '';
+	let maxNumInput = '';
+
+	function handleSubmit() {
+		const newCity = new CitySales(cityInput, minNumInput, maxNumInput, avgCookieSaleHour);
+		cityObjArr.push(newCity);
+		cityInput = '';
+		minNumInput = '';
+		maxNumInput = '';
+	}
+</script>
+
+<main>
+	<form on:submit|preventDefault={handleSubmit}>
+		<!-- your form goes here -->
+	</form>
+
+	<!-- Generate a table for each city in cityObjArr -->
+	{#each cityObjArr as city (city.cityName)}
+		<h2>{city.cityName}</h2>
+
+		<h3>Sales</h3>
+		<table>
+			<tbody>
+				{#each city.hourlySaleList as sale (sale)}
+					<td>{sale}</td>
+				{/each}
+			</tbody>
+		</table>
+
+		<h3>Employees</h3>
+		<table>
+			<tbody>
+				{#each city.hourlyEmployee as employee (employee)}
+					<td>{employee}</td>
+				{/each}
+			</tbody>
+		</table>
+	{/each}
+</main>
+
+<style>
+	/* Your CSS code goes here */
+</style>
