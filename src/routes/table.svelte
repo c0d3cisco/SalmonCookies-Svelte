@@ -1,4 +1,28 @@
 <script>
+	class CitySales {
+		constructor(cityName, minCustomer, maxCustomer, avgCookieSaleHour) {
+			this.cityName = cityName;
+			this.minCustomer = minCustomer;
+			this.maxCustomer = maxCustomer;
+			this.avgCookieSaleHour = avgCookieSaleHour;
+			this.hourlySaleList = [];
+			this.hourlyEmployee = [];
+			this.totalSales = 0;
+		}
+
+		generateHourlySales() {
+			for (let i = 0; i < hours.length; i++) {
+				let customers = Math.floor(Math.random() * (this.maxCustomer - this.minCustomer + 1)) + this.minCustomer;
+				let hourlySale = Math.ceil(customers * this.avgCookieSaleHour);
+				this.hourlySaleList.push(hourlySale);
+			}
+		}
+
+		calculateTotalSales() {
+			this.totalSales = this.hourlySaleList.reduce((total, sale) => total + sale, 0);
+		}
+	}
+
 	let hours = [
 		'6:00am',
 		'7:00am',
@@ -16,32 +40,26 @@
 		'7:00pm'
 	];
 	let startCityObjArr = [
-		{ cityName: 'Seattle', minCustomer: 23, maxCustomer: 65, avgCookieSaleHour: 6.3 },
-		{ cityName: 'Tokyo', minCustomer: 3, maxCustomer: 24, avgCookieSaleHour: 1.2 },
-		{ cityName: 'Dubai', minCustomer: 11, maxCustomer: 38, avgCookieSaleHour: 3.7 },
-		{ cityName: 'Paris', minCustomer: 20, maxCustomer: 38, avgCookieSaleHour: 6.3 },
-		{ cityName: 'Lima', minCustomer: 2, maxCustomer: 65, avgCookieSaleHour: 6.3 }
+		new CitySales('Seattle', 23, 65, 6.3),
+		new CitySales('Tokyo', 3, 24, 1.2),
+		new CitySales('Dubai', 11, 24, 1.2),
+		new CitySales('Paris', 20, 38, 6.3),
+		new CitySales('Lima', 2, 65, 6.3),
 	];
 
 	export let cityObjArr;
 
-	$: cityObjArr = [
-		...startCityObjArr,
-		...cityObjArr,
-	]
+	$: {
+		cityObjArr = [
+			...startCityObjArr,
+			// ...cityObjArr,
+		];
 
-	let sum = Math.ceil(Math.random() * 100);
-	let controlCurve = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.68, 0.5, 0.3, 0.45];
-
-	const returnTotal = () => {
-		let total = 0;
-		controlCurve.forEach((controlCurve) => {
-			let randomNum = Math.floor(Math.random() * (sum - 1 + 1)) + 1;
-			let hourlySale = Math.ceil(randomNum * sum * controlCurve);
-			total += hourlySale;
+		cityObjArr.forEach((city) => {
+			city.generateHourlySales();
+			city.calculateTotalSales();
 		});
-		return total;
-	};
+	}
 </script>
 
 <main>
@@ -59,16 +77,14 @@
 			</tr>
 		</thead>
 		<!-- {#each cityObjArr as city, i(city.cityName)} -->
-		{#each cityObjArr as { cityName: city }, i}
+		{#each cityObjArr as { cityName, hourlySaleList, totalSales }}
 			<tbody>
 				<tr>
-					<td>{city}</td>
-					{#each controlCurve as values}
-						<td>{values}</td>
+					<td>{cityName}</td>
+					{#each hourlySaleList as sale}
+						<td>{sale}</td>
 					{/each}
-					<td>
-						{returnTotal()}
-					</td>
+					<td>{totalSales}</td>
 				</tr>
 			</tbody>
 		{/each}
@@ -78,3 +94,4 @@
 <style>
 	/* Your CSS code goes here */
 </style>
+
