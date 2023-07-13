@@ -30,14 +30,16 @@
 	}
 </script>
 
+
+
 <!-- <main> include this later -->
 
 <!-- <Form /> Future Form -->
 <form on:submit|preventDefault={handleSubmit}>
-	<input bind:value={cityName} />
-	<input type="number" min="0" step="0.1" bind:value={avgCookieSaleHour} on:wheel={handleScroll} />
-	<input type="number" min="0" step="0.1" bind:value={maxCustomer} on:wheel={handleScroll} />
-	<input type="number" min="0" step="0.1" bind:value={minCustomer} on:wheel={handleScroll} />
+	<input bind:value={cityName} placeholder="City Name"/>
+	<input type="number" min="0" step="0.1" bind:value={avgCookieSaleHour} on:wheel={handleScroll} placeholder="Average sales per hour"/>
+	<input type="number" min="0" step="0.1" bind:value={maxCustomer} on:wheel={handleScroll} placeholder="Max customers per hour"/>
+	<input type="number" min="0" step="0.1" bind:value={minCustomer} on:wheel={handleScroll} placeholder="Minimum customers per hour"/>
 
 	<button disabled={!(minCustomer && maxCustomer && avgCookieSaleHour)} type="submit">
 		Submit
@@ -50,4 +52,48 @@
 
 <style>
 	/* Your CSS code goes here */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 4px;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  input[type="number"] {
+    width: 200px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+		text-align: center;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+		margin-bottom: 10px;
+  }
+
+  button[type="submit"]:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .container {
+    /* Add any additional styling for the table container if needed */
+  }
 </style>

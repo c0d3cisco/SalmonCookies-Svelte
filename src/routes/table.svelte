@@ -102,5 +102,40 @@
 
 <style>
 	/* Your CSS code goes here */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+		text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tfoot td {
+		background-color: #f2f2f2;
+  font-weight: bold;
+  border-top: 2px solid #ddd;
+  }
+
+	tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+thead th {
+  border-radius: 4px;
+}
+
 </style>
 
