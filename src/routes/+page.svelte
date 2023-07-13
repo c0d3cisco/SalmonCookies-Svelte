@@ -93,6 +93,45 @@
     background-color: #45a049;
   }
 
+	/* Your CSS code goes here */
+button[type="submit"]:not([disabled]) {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button[type="submit"]:not([disabled]):before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  opacity: 0;
+  z-index: -1;
+}
+
+button[type="submit"]:not([disabled]):hover:before {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+  animation: line-out 0.8s ease-out forwards;
+}
+
+@keyframes line-out {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+
   .container {
     /* Add any additional styling for the table container if needed */
   }
