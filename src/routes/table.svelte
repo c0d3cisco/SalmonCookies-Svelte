@@ -107,6 +107,9 @@
     border-collapse: collapse;
     border: 1px solid #ddd;
     margin-bottom: 20px;
+		font-family: "Arial", sans-serif;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border-radius: 6px;
   }
 
   th, td {
@@ -126,7 +129,12 @@
   }
 
 	tbody tr:hover {
-  background-color: #f9f9f9;
+		background: linear-gradient(to bottom, #f9f9f9, #f2f2f2);
+
+}
+
+td:hover {
+	background-color: f9f9f9;
 }
 
 tbody tr:nth-child(even) {
