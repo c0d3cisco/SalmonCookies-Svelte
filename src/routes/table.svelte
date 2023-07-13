@@ -101,21 +101,23 @@
 </main>
 
 <style>
-	/* Your CSS code goes here */
+  /* Your CSS code goes here */
   table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
     margin-bottom: 20px;
-		font-family: "Arial", sans-serif;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		border-radius: 6px;
+    font-family: "Arial", sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
   }
 
-  th, td {
-    padding: 12px;
+  th,
+  td {
+    padding: 12px 0;
     border-bottom: 1px solid #ddd;
-		text-align: center;
+    text-align: center;
+    font-size: 16px; /* Adjust the font size as needed */
   }
 
   th {
@@ -123,27 +125,24 @@
   }
 
   tfoot td {
-		background-color: #f2f2f2;
-  font-weight: bold;
-  border-top: 2px solid #ddd;
+    background-color: #f2f2f2;
+    font-weight: bold;
+    border-top: 2px solid #ddd;
   }
 
-	tbody tr:hover {
-		background: linear-gradient(to bottom, #f9f9f9, #f2f2f2);
+  tbody tr:hover {
+    background: linear-gradient(to bottom, #f9f9f9, #f2f2f2);
+  }
 
-}
+  td:hover {
+    background-color: #fff877;
+  }
 
-td:hover {
-	background-color: f9f9f9;
-}
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-thead th {
-  border-radius: 4px;
-}
-
+  thead th {
+    border-radius: 4px;
+  }
 </style>
-
