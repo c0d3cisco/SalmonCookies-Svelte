@@ -2,6 +2,11 @@
 	import Table from './table.svelte';
 
 	let array = [
+		{ cityName: 'Seattle', minCustomer: 23, maxCustomer: 65, avgCookieSaleHour: 6.3 },
+		{ cityName: 'Tokyo', minCustomer: 3, maxCustomer: 24, avgCookieSaleHour: 1.2 },
+		{ cityName: 'Dubai', minCustomer: 11, maxCustomer: 38, avgCookieSaleHour: 3.7 },
+		{ cityName: 'Paris', minCustomer: 20, maxCustomer: 38, avgCookieSaleHour: 6.3 },
+		{ cityName: 'Lima', minCustomer: 2, maxCustomer: 65, avgCookieSaleHour: 6.3 },
 	];
 
 	let cityName;
@@ -40,9 +45,7 @@
 </form>
 
 <div class="container">
-	<h1>Table</h1>
-
-	<Table cityObjArr={array} />
+	<Table cityObjArrInput={array} />
 </div>
 
 <style>
