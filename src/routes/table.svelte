@@ -39,27 +39,27 @@
 		'6:00pm',
 		'7:00pm'
 	];
-	let startCityObjArr = [
-		new CitySales('Seattle', 23, 65, 6.3),
-		new CitySales('Tokyo', 3, 24, 1.2),
-		new CitySales('Dubai', 11, 24, 1.2),
-		new CitySales('Paris', 20, 38, 6.3),
-		new CitySales('Lima', 2, 65, 6.3),
-	];
+	export let cityObjArrInput;
+	
+	$: cityObjArrInput = cityObjArrInput.map((city) => {
+		city = new CitySales(city.cityName, city.minCustomer, city.maxCustomer, city.avgCookieSaleHour)
+		city.generateHourlySales();
+		city.calculateTotalSales();
+		return city;
+	})
 
-	export let cityObjArr;
+	let hourTotals = [];
+  $: {
+    hourTotals = [];
+    for (let i = 0; i < hours.length; i++) {
+      let total = 0;
+      cityObjArrInput.forEach((city) => {
+        total += city.hourlySaleList[i];
+      });
+      hourTotals.push(total);
+    }
+  }
 
-	$: {
-		cityObjArr = [
-			...startCityObjArr,
-			// ...cityObjArr,
-		];
-
-		cityObjArr.forEach((city) => {
-			city.generateHourlySales();
-			city.calculateTotalSales();
-		});
-	}
 </script>
 
 <main>
@@ -77,7 +77,7 @@
 			</tr>
 		</thead>
 		<!-- {#each cityObjArr as city, i(city.cityName)} -->
-		{#each cityObjArr as { cityName, hourlySaleList, totalSales }}
+		{#each cityObjArrInput as { cityName, hourlySaleList, totalSales }}
 			<tbody>
 				<tr>
 					<td>{cityName}</td>
@@ -88,6 +88,15 @@
 				</tr>
 			</tbody>
 		{/each}
+		<tfoot>
+      <tr>
+        <td>Total</td>
+        {#each hourTotals as total}
+          <td>{total}</td>
+        {/each}
+        <td>{cityObjArrInput.reduce((total, city) => total + city.totalSales, 0)}</td>
+      </tr>
+    </tfoot>
 	</table>
 </main>
 
