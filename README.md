@@ -1,39 +1,44 @@
-# create-svelte
+# Salmon Cookies
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Problem Domain
 
-## Creating a project
+The goal of this project is to recreate a website for a fictional company called Salmon Cookies using a new framework to the developers. Svelte can be paired with other technologies such as Vite, Material UI and many more.  Svelte was the framework chosen as the technology to redesign the application. The application is a cookie sales website that allows the user to add new stores, and view the sales data for each store. The application also allows the user to add new stores to the website.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## General Comments
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Svelte offers an easy front end experience. It is a great framework for developers who want to build small applications quickly; great for prototyping! This is because Svelte has a unique solution that brings JavaScript, CSS, and HTML to one document. Once working with Svelte, there is close connection to working with regular old HTML, but in the new and innovative way. That unification can also be a recipe for confusion when building large applications.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+### Pros
 
-## Developing
+- Svelte is a very easy framework to learn and use. Follow this [tutorial](https://learn.svelte.dev/tutorial/welcome-to-svelte) to quickly get acquainted with the framework.
+- It shares many similarities to React in its syntax and structure.
+- It is a great framework for building small applications.
+- Amazing for quickly building prototypes.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Cons
 
-```bash
-npm run dev
+- Svelte is a very new framework and is still in its infancy, so community help is limited.
+- It can get very messy when building large applications.
+- Some syntax are not very intuitive and can be confusing.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Ratings and Reviews
 
-## Building
+### Documentation
 
-To create a production version of your app:
+[Documentation can be found here](https://svelte.dev/docs/introduction)
 
-```bash
-npm run build
-```
+### Systems Requirements
 
-You can preview the production build with `npm run preview`.
+Apart from the basic dependencies of Node.js and a compatible operating system, Svelte itself does not have any specific dependencies or core requirements.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-# SalmonCookies-Svelte
+## Ramp-Up Projections
+
+Based on the experience we had with Svelte, it is save to say a team of mid-junior devs to take less than 3 days to get up to speed with the framework and be able to provide value to the team.
+
+## Community Support and Adoption levels
+
+Its adoption levels have mixed reviews. [This article](https://www.makeuseof.com/most-popular-javascript-frameworks/) shows the reviews the framework has received. While it is one of less desired frameworks, it is the MOST ADMIRED!
+
+![Svelte popularity](./static/SveltePopularity.png)
+
+The framework is generally new but quickly gaining popularity with a growing fan base. Community page can be found [here](https://sveltesociety.dev/).
