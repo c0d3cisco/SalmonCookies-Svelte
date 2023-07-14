@@ -118,6 +118,7 @@
     border-bottom: 1px solid #ddd;
     text-align: center;
     font-size: 16px; /* Adjust the font size as needed */
+		border-right: 1px solid #dddddd8e;
   }
 
   th {
@@ -135,7 +136,7 @@
   }
 
   td:hover {
-    background-color: #fff877;
+    background-color: #f9f9f9;
   }
 
   tbody tr:nth-child(even) {
@@ -145,4 +146,5 @@
   thead th {
     border-radius: 4px;
   }
+
 </style>

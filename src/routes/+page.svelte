@@ -16,6 +16,8 @@
 	let maxCustomer = 0;
 	let avgCookieSaleHour = 0;
 
+	let toggle = true;
+
 	$: minCustomer = Math.min(minCustomer, maxCustomer);
 
 	function handleSubmit(e) {
@@ -54,25 +56,27 @@
 </script>
 
 <body role="application" on:mousemove={handleMouseMove}>
-	<div class="svg-container" bind:this={svgContainer}>
-		<div
-			role="button"
-			tabindex="0"
-			on:mousedown={() => size.set(30)}
-			on:mouseup={() => size.set(10)}
-		>
-			<svg>
-				<!-- <circle cx={$coords.x} cy={$coords.y} r={$size} /> -->
-				<image
-					href={image}
-					x={$coords.x - $size}
-					y={$coords.y - $size}
-					width={10 * $size}
-					height={10 * $size}
-				/>
-			</svg>
+	{#if toggle}
+		<div class="svg-container" bind:this={svgContainer}>
+			<div
+				role="button"
+				tabindex="0"
+				on:mousedown={() => size.set(30)}
+				on:mouseup={() => size.set(10)}
+			>
+				<svg>
+					<!-- <circle cx={$coords.x} cy={$coords.y} r={$size} /> -->
+					<image
+						href={image}
+						x={$coords.x - $size}
+						y={$coords.y - $size}
+						width={10 * $size}
+						height={10 * $size}
+					/>
+				</svg>
+			</div>
 		</div>
-	</div>
+	{/if}
 
 	<form on:submit|preventDefault={handleSubmit}>
 		<label for="cityName">City Name:</label>
@@ -110,24 +114,29 @@
 			on:wheel={handleScroll}
 			placeholder="Minimum customers per hour"
 		/>
-
-		<button disabled={!(minCustomer && maxCustomer && avgCookieSaleHour)} type="submit">
-			Submit
-		</button>
+		<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+			<button disabled={!(minCustomer && maxCustomer && avgCookieSaleHour)} type="submit">
+				Submit
+			</button>
+	
+			<button on:click={()=>toggle=!toggle} type='button'>
+				FUN
+			</button>
+		</div>
 	</form>
 
 	<div class="tableContainer">
 		<Table cityObjArrInput={array} />
 	</div>
-	<div class="ocean">
-		<div class="wave" />
-		<div class="wave" />
-	</div>
+	{#if toggle}
+		<div class="ocean">
+			<div class="wave" />
+			<div class="wave" />
+		</div>
+	{/if}
 </body>
 
 <style>
-
-
 	svg {
 		position: absolute;
 		width: 100%;
@@ -151,9 +160,11 @@
 	}
 
 	.ocean {
-		height: 5%;
+		/* height: 5%; */
+		height: 100px; /* Adjust the height of the wave element as needed */
+
 		width: 100%;
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 		left: 0;
 		background: #015871;
@@ -239,12 +250,28 @@
 		margin-bottom: 10px;
 	}
 
+	button[type='button'] {
+		padding: 10px 20px;
+		background-color: #4caf50;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background-color 0.3s ease;
+		margin-bottom: 10px;
+	}
+
 	button[type='submit']:disabled {
 		background-color: #999;
 		cursor: not-allowed;
 	}
 
 	button[type='submit']:hover {
+		background-color: #45a049;
+	}
+
+	button[type='button']:hover {
 		background-color: #45a049;
 	}
 
